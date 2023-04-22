@@ -1,7 +1,7 @@
 import java.util.NoSuchElementException;
 import java.lang.Math;
 public class IntegerScalar implements Scalar{
-    private int number;
+    private final int number;
     public IntegerScalar(int n){
         this.number = n;
     }
@@ -21,9 +21,7 @@ public class IntegerScalar implements Scalar{
     }
 
     public int sign(){
-        if (number > 0) return 1;
-        else if (number < 0) return -1;
-        else return 0;
+        return Integer.signum(number);
     }
 
     public boolean equals(Object o){
@@ -31,6 +29,6 @@ public class IntegerScalar implements Scalar{
         return true;
     }
     public String toString(){
-        return "Your Integer Scalar is: " + number;
+        return "" + number;
     }
 }
