@@ -1,9 +1,10 @@
 import java.util.NoSuchElementException;
 
 public class RationalScalar implements Scalar {
-    private int numerator;
-    private int denominator;
+    private final int numerator;
+    private final int denominator;
     public RationalScalar(int numerator,int denominator){
+        if (denominator == 0) throw new IllegalArgumentException("Denominator mustn't be 0!");
         this.numerator = numerator;
         this.denominator = denominator;
     }
@@ -19,13 +20,15 @@ public class RationalScalar implements Scalar {
     }
 
     public Scalar power(int exponent){
-        return new IntegerScalar((int)Math.pow(number,exponent));
+        int tempN = (int)Math.pow(numerator,exponent);
+        int tempD = (int)Math.pow(denominator,exponent);
+        return new RationalScalar(tempN,tempD);
     }
 
     public int sign(){
-        if (number > 0) return 1;
-        else if (number < 0) return -1;
-        else return 0;
+        if (numerator == 0) return 0;
+        if ((numerator > 0 && denominator > 0) | (numerator < 0 && denominator < 0)) return 1;
+        return -1;
     }
 
     public boolean equals(Object o){
@@ -33,9 +36,36 @@ public class RationalScalar implements Scalar {
         return true;
     }
     public String toString(){
-        return "Your Integer Scalar is: " + number;
+        RationalScalar reducedThis = new RationalScalar(numerator,denominator).reduce();
+        int reducedN = reduce().numerator , reducedD = reducedThis.denominator;
+        if (reducedD == 1 | reducedD == -1)
+            return "" + reducedN;
+        if(reducedThis.sign() == -1)
+            return "-" + Math.abs(reducedN) + "/" + Math.abs(reducedD);
+        return "" + Math.abs(reducedN) + "/" + Math.abs(reducedD);
+
     }
+    // using the GCD Algorithm.
     public RationalScalar reduce(){
-        return new RationalScalar(numerator, 1);
+        int gcd = 1, tempN, tempD;
+        boolean isNegN = false, isNegD = false;
+        if (numerator<0) {
+            tempN = -numerator;
+            isNegN = true;
+        }
+        else tempN = numerator;
+        if (denominator <0){
+            tempD = -denominator;
+            isNegD = true;
+        }
+        else tempD = denominator;
+
+        for (int i = 1; i <= tempN && i <= tempD ; i++) {
+            if(tempN%i==0 && tempD%i==0)
+                gcd = i;
+        }
+        if (isNegD & isNegN)
+            gcd = -gcd;
+        return new RationalScalar(numerator/gcd,denominator/gcd);
     }
 }
