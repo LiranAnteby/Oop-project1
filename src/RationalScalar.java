@@ -47,22 +47,24 @@ public class RationalScalar implements Scalar {
     }
     // using the GCD Algorithm.
     public RationalScalar reduce(){
-        int gcd = 1, tempN, tempD;
+        if (numerator == 0) return new RationalScalar(0,1);
+        int gcd = 1, tempN = numerator, tempD = denominator;
         boolean isNegN = false, isNegD = false;
-        if (numerator<0) {
-            tempN = -numerator;
+        if (tempN<0) {
+            tempN = -tempN;
             isNegN = true;
         }
-        else tempN = numerator;
-        if (denominator <0){
-            tempD = -denominator;
+        if (tempD <0){
+            tempD = -tempD;
             isNegD = true;
         }
-        else tempD = denominator;
 
-        for (int i = 1; i <= tempN && i <= tempD ; i++) {
-            if(tempN%i==0 && tempD%i==0)
-                gcd = i;
+        while(tempN != tempD)
+        {
+            if(tempN > tempD)
+                tempN = tempN - tempD;
+            else
+                tempD = tempD - tempN;
         }
         if (isNegD & isNegN)
             gcd = -gcd;
