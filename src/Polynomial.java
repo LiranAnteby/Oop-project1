@@ -58,34 +58,39 @@ public class Polynomial {
  */
 
     public Polynomial add(Polynomial p) {
-        LinkedList<Monomial> list = new LinkedList<>() ;
-        for ( Integer key : p.monomials.keySet()){
-            if (this.monomials.keySet() != )
-
+        Polynomial poly = this;
+        Set<Integer> pSet = p.monomials.keySet();
+        for ( Integer key : pSet){
+            poly.monomials.put(key,poly.monomials.get(key).add(p.monomials.get(key)));
         }
+        return poly;
     }
     public Polynomial mul(Polynomial p){
-        LinkedList<Monomial> list = new LinkedList<>() ;
-
+        Polynomial poly = this;
+        Set<Integer> pSet = p.monomials.keySet();
+        for ( Integer key : pSet){
+            poly.monomials.put(key,poly.monomials.get(key).mul(p.monomials.get(key)));
+        }
+        return poly;
     }
 
     public Scalar evaluate(Scalar s){
         Scalar scalar = new RationalScalar(0,1) ;
-        for (Map.Entry<Integer, Monomial> entry : this.monomials.entrySet()) {
-            Monomial mono = entry.getValue();
-            Scalar temp = scalar.add(mono.evaluate(s));
+        Set<Integer> KeySet = this.monomials.keySet();
+        for ( Integer key : KeySet){
+            Scalar temp = this.monomials.get(key).evaluate(s);
             scalar = temp;
         }
         return scalar;
     }
 
     public Polynomial derivative(){
-        LinkedList<Monomial> list = new LinkedList<>() ;
-        for (Map.Entry<Integer, Monomial> entry : this.monomials.entrySet()) {
-            Monomial mono = entry.getValue();
-            list.add(mono.derivative());
-        }
-        return new Polynomial(list);
+         Polynomial poly = this;
+         Set<Integer> pSet = this.monomials.keySet();
+         for ( Integer key : pSet){
+             poly.monomials.put(key,poly.monomials.get(key).derivative());
+         }
+        return poly;
     }
 
     public boolean equals(Object o){
@@ -102,15 +107,30 @@ public class Polynomial {
         return true;
     }
 
-    public String toString(){
-        String string = "";
-        int last = monomials.lastKey();
-        for(int i = 0 ; i<=last ; i++){
-            Monomial value = monomials.get(i);
-            string = string + value.toString();
+public String toString(){
+    String string = "";
+    Set<Integer> keySet = this.monomials.keySet();
+    for ( Integer key : keySet){;
+        Monomial value = monomials.get(key);
+        //System.out.println(value.toString());
+        if (value.toString() != ""){
+            if(value.toString().charAt(0) == '-'){
+                string = string + value.toString();
+            }
+            else{
+                if (string != ""){
+                    string =    string + "+"+value.toString() ;
+
+                }
+                else{
+                    string = string + value.toString();
+                }
+            }
         }
-        return string;
     }
+    return string;
+}
+
 
 }
 

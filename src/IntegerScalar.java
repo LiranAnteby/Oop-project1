@@ -45,6 +45,7 @@ public class IntegerScalar implements Scalar{
             return ( ((RationalScalar)o).getNumerator() / ((RationalScalar)o).getDenominator() == number);
     }
     public String toString(){
+        if (number == 0) return "";
         return "" + number;
     }
 }

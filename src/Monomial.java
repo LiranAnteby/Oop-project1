@@ -36,15 +36,34 @@ public class Monomial {
         if (!((Monomial) o).coefficient.equals(coefficient)) return false;
         return true;
     }
+/*
     public String toString(){
-        if (coefficient.equals(new IntegerScalar(1)))
+        if (coefficient.equals(new IntegerScalar(1))){
             return "x^" + exponent;
+        }
         if (coefficient.equals(new IntegerScalar(-1)))
             return "-x^" + exponent;
         if (exponent == 0)
             return coefficient.toString();
         if (coefficient.equals(new IntegerScalar(0)))
-            return "0";
+            return "";
+        return coefficient.toString() + "x^" + exponent;
+    }
+*/
+    public String toString(){
+        if (exponent == 0)
+            return coefficient.toString();
+        if (coefficient.equals(new IntegerScalar(0)))
+            return "";
+        if (exponent == 1 )
+            return coefficient+"x";
+        if (coefficient.equals(new IntegerScalar(1))){
+            return "x^" + exponent;
+        }
+        if (coefficient.equals(new IntegerScalar(-1)))
+            return "-x^" + exponent;
+
+
         return coefficient.toString() + "x^" + exponent;
     }
 }
