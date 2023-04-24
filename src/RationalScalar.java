@@ -14,14 +14,16 @@ public class RationalScalar implements Scalar {
     public int getDenominator() {
         return denominator;
     }
+
     public Scalar add(Scalar s) {
         return s.add(this);
     }
-    private Scalar add(IntegerScalar s){
+
+    public Scalar add(IntegerScalar s){
         return this.add(new RationalScalar(s.getNumber(),1));
     }
-    private Scalar add(RationalScalar s){
-        int tempN = numerator * s.getDenominator() + s.getDenominator() * denominator;
+    public Scalar add(RationalScalar s){
+        int tempN = numerator * s.getDenominator() + s.getNumerator() * denominator;
         int tempD = denominator * s.getDenominator();
         if (tempN%tempD == 0) return new IntegerScalar(tempN/tempD);
         return new RationalScalar(tempN, tempD).reduce();
@@ -57,10 +59,15 @@ public class RationalScalar implements Scalar {
 
     public boolean equals(Object o){
         if (! (o instanceof Scalar)) return false;
-        if (o instanceof IntegerScalar)
-            return (numerator / denominator == ((IntegerScalar)o).getNumber()) ;
-        else
-            return ( ((RationalScalar)o).getNumerator()/((RationalScalar)o).getDenominator() == numerator/denominator );
+        if (o instanceof IntegerScalar){
+            int temp = ((IntegerScalar)o).getNumber();
+            int rational = numerator/denominator, leftOver = numerator%denominator;
+            return temp == rational && leftOver == 0 ;
+        }
+        else {
+            RationalScalar rationalScalar = ((RationalScalar) o).reduce();
+            return rationalScalar.getNumerator() / rationalScalar.getDenominator() == numerator / denominator;
+        }
     }
     public String toString(){
         RationalScalar reducedThis = this.reduce();

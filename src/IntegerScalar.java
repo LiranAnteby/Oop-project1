@@ -8,13 +8,14 @@ public class IntegerScalar implements Scalar{
         return number;
     }
 
+
     public Scalar add(Scalar s) {
         return s.add(this);
     }
-    private Scalar add(IntegerScalar s){
+    public Scalar add(IntegerScalar s){
         return new IntegerScalar(number + s.getNumber());
     }
-    private Scalar add(RationalScalar s){
+    public Scalar add(RationalScalar s){
         return s.add(new RationalScalar(number,1));
     }
     public Scalar mul(Scalar s){
