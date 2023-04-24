@@ -21,10 +21,10 @@ public class IntegerScalar implements Scalar{
     public Scalar mul(Scalar s){
         return s.mul(this);
     }
-    private Scalar mul(IntegerScalar s){
+    public Scalar mul(IntegerScalar s){
         return new IntegerScalar(number * s.getNumber());
     }
-    private Scalar mul(RationalScalar s){
+    public Scalar mul(RationalScalar s){
         return s.mul(new RationalScalar(number,1));
     }
     public Scalar neg(){

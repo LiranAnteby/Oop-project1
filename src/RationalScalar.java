@@ -31,10 +31,10 @@ public class RationalScalar implements Scalar {
     public Scalar mul(Scalar s){
         return s.mul(this);
     }
-    private Scalar mul(IntegerScalar s){
+    public Scalar mul(IntegerScalar s){
         return this.mul(new RationalScalar(s.getNumber(),1));
     }
-    private Scalar mul(RationalScalar s){
+    public Scalar mul(RationalScalar s){
         int tempN = numerator * s.getNumerator();
         int tempD = denominator * s.getDenominator();
         if (tempN%tempD == 0) return new IntegerScalar(tempN/tempD);
