@@ -86,7 +86,7 @@ public class Polynomial {
 
     public Polynomial derivative(){
          Polynomial poly = this;
-         Set<Integer> pSet = this.monomials.keySet();
+         Set<Integer> pSet = this.monomials.keySet() ;
          for ( Integer key : pSet){
              poly.monomials.put(key,poly.monomials.get(key).derivative());
          }
