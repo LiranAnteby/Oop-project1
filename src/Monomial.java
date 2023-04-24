@@ -5,6 +5,13 @@ public class Monomial {
         this.exponent = exponent;
         this.coefficient = coefficient;
     }
+    public int getExponent(){
+        return this.exponent;
+    }
+    public Scalar getCoefficient(){
+        return this.coefficient;
+    }
+
     public Monomial add (Monomial m){
         if (m.exponent != this.exponent) return null;
         return new Monomial(exponent,coefficient.add(m.coefficient));
