@@ -107,15 +107,30 @@ public class Polynomial {
         return true;
     }
 
-    public String toString(){
-        String string = "";
-        int last = monomials.lastKey();
-        for(int i = 0 ; i<=last ; i++){
-            Monomial value = monomials.get(i);
-            string = string + value.toString();
+public String toString(){
+    String string = "";
+    Set<Integer> keySet = this.monomials.keySet();
+    for ( Integer key : keySet){;
+        Monomial value = monomials.get(key);
+        //System.out.println(value.toString());
+        if (value.toString() != ""){
+            if(value.toString().charAt(0) == '-'){
+                string = string + value.toString();
+            }
+            else{
+                if (string != ""){
+                    string =    string + "+"+value.toString() ;
+
+                }
+                else{
+                    string = string + value.toString();
+                }
+            }
         }
-        return string;
     }
+    return string;
+}
+
 
 }
 
