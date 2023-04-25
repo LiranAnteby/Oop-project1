@@ -56,8 +56,8 @@ class MonomialTest {
 
     @Test
     void testToString() {
-        //assertEquals("2x",monomial1.toString());
-        //assertEquals("1",monomial2.toString());
+        assertEquals("2x",monomial1.toString());
+        assertEquals("1",monomial2.toString());
         assertEquals("-4x^3",monomial3.toString());
         assertEquals("-5/3x^3",monomial4.toString());
 
