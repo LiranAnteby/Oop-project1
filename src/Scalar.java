@@ -9,4 +9,5 @@ public interface Scalar {
     int sign();
 
     boolean equals(Object o);
+
 }

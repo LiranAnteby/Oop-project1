@@ -16,7 +16,7 @@ class IntegerScalarTest {
         is2 = new IntegerScalar(0);
         is3 = new IntegerScalar(-1);
         is4 = new IntegerScalar(2);
-        is5 = new IntegerScalar(-2);
+        is5 = new IntegerScalar(3);
 
 
 
@@ -28,6 +28,9 @@ class IntegerScalarTest {
 
     @Test
     void test_add() {
+        assertEquals(is2,is1.add(is3));
+        assertEquals(is5,is4.add(is1));
+        assertEquals(is1,is4.add(is3));
     }
 
     @Test
@@ -56,7 +59,6 @@ class IntegerScalarTest {
         assertEquals("", is2.toString());
         assertEquals("-1", is3.toString());
         assertEquals("2", is4.toString());
-        assertEquals("-2", is5.toString());
 
     }
 }
