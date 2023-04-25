@@ -9,6 +9,8 @@ class IntegerScalarTest {
     private IntegerScalar is3;
     private IntegerScalar is4;
     private IntegerScalar is5;
+    private IntegerScalar is6;
+
 
     @BeforeEach
     void setUp() {
@@ -17,9 +19,7 @@ class IntegerScalarTest {
         is3 = new IntegerScalar(-1);
         is4 = new IntegerScalar(2);
         is5 = new IntegerScalar(3);
-
-
-
+        is6 = new IntegerScalar(-3);
     }
 
     @Test
