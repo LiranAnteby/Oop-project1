@@ -41,7 +41,6 @@ class IntegerScalarTest {
         assertEquals(is5,is4.add(is1));
         assertEquals(is1,is4.add(is3));
         assertEquals("-2",is6.add(is1).toString());
-
     }
 
     @Test
@@ -50,7 +49,6 @@ class IntegerScalarTest {
         assertEquals("3",is3.mul(is6).toString());
         assertEquals("",is2.mul(is3).toString());
         assertEquals("6",is4.mul(is5).toString());
-
     }
 
     @Test
@@ -58,7 +56,6 @@ class IntegerScalarTest {
         assertEquals("-3",is5.neg().toString());
         assertEquals("1",is3.neg().toString());
         assertEquals("",is2.neg().toString());
-
     }
 
     @Test
@@ -68,8 +65,6 @@ class IntegerScalarTest {
         assertEquals("8",is4.power(3).toString());
         assertEquals("",is2.power(3).toString());
         assertEquals("1",is3.power(0).toString());
-
-
     }
 
     @Test
@@ -77,14 +72,12 @@ class IntegerScalarTest {
         assertEquals(1,is1.sign());
         assertEquals(0,is2.sign());
         assertEquals(-1,is3.sign());
-
     }
 
     @Test
     void test_equals() {
         assertEquals(true,is1.equals(is1));
         assertEquals(false,is5.equals(is6));
-
     }
 
     @Test
@@ -93,6 +86,5 @@ class IntegerScalarTest {
         assertEquals("", is2.toString());
         assertEquals("-1", is3.toString());
         assertEquals("2", is4.toString());
-
     }
 }
