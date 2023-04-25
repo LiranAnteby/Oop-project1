@@ -10,6 +10,7 @@ class IntegerScalarTest {
     private IntegerScalar is4;
     private IntegerScalar is5;
     private IntegerScalar is6;
+    private RationalScalar rs1;
 
 
     @BeforeEach
@@ -20,19 +21,15 @@ class IntegerScalarTest {
         is4 = new IntegerScalar(2);
         is5 = new IntegerScalar(3);
         is6 = new IntegerScalar(-3);
+        rs1 = new RationalScalar(5,6);
     }
-
-    @Test
-    void test_getNumber() {
-    }
-
     @Test
     void test_add() {
         assertEquals(is2,is1.add(is3));
         assertEquals(is5,is4.add(is1));
         assertEquals(is1,is4.add(is3));
         assertEquals("-2",is6.add(is1).toString());
-
+        assertEquals(new RationalScalar(23,6),is5.add(rs1));
     }
 
     @Test
