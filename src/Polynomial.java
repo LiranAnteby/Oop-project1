@@ -35,69 +35,36 @@ public class Polynomial {
     }
 /*
     public Polynomial add(Polynomial p) {
-        LinkedList<Monomial> list = new LinkedList<>();
+        LinkedList<Monomial> list = new LinkedList<>() ;
         list.addAll(this.monomials.values());
         list.addAll(p.monomials.values());
         return new Polynomial(list);
-    }
-*/
+
     public Polynomial add(Polynomial p) {
         LinkedList<Monomial> list = new LinkedList<>() ;
         int lastCurrent = monomials.lastKey();
         int lastOther = p.monomials.lastKey();
-        //System.out.println(lastCurrent);
-        //System.out.println(lastOther);
-        Set<Integer> set ;
-
-        int last;
-        if (lastCurrent>=lastOther) {
-            last = lastOther;
-            set = this.monomials.keySet();
-
-        }
-        else{
-            last = lastCurrent;
-            set = p.monomials.keySet();
-
-        }
-        //System.out.println(last);
-        for (Integer key : set){
-            System.out.println(key.toString());
-            Monomial monoC = new Monomial(key, this.monomials.get(key).getCoefficient());
-            Monomial monoO = new Monomial(key, p.monomials.get(key).getCoefficient());
-
-            System.out.println(monoC.toString());
-            System.out.println(monoO.toString());
-            Monomial toAdd = monoC.add(monoO);
-            System.out.println("to add:"+ toAdd.toString());
-
-            list.add(monoC.add(monoO));
-            System.out.println(list.get(0).toString());
+        if (lastCurrent>=lastOther){int last = lastOther;}
+        else{int last = lastCurrent;}
+        for(int i = 0 ; i<=last ; i++) {
+            Monomial tempP = new Monomial(i, p.monomials.get(i).getCoefficient());
+            list.add(this.monomials.get(i).add(tempP));
         }
         return new Polynomial(list);
     }
 
 
 
-/*
+ */
 
     public Polynomial add(Polynomial p) {
-        Polynomial poly;
-        Set<Integer> set ;
-        if (this.monomials.lastKey() >= p.monomials.lastKey()){
-            set = this.monomials.keySet();
-            poly = this;
-        }
-        else {
-            set = p.monomials.keySet();
-            poly=p;
-        }
-        for ( Integer key : set){
+        Polynomial poly = this;
+        Set<Integer> pSet = p.monomials.keySet();
+        for ( Integer key : pSet){
             poly.monomials.put(key,poly.monomials.get(key).add(p.monomials.get(key)));
         }
         return poly;
     }
-*/
     public Polynomial mul(Polynomial p){
         Polynomial poly = this;
         Set<Integer> pSet = p.monomials.keySet();
