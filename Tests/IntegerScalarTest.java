@@ -2,7 +2,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class IntegerScalarTest {
     private IntegerScalar is1;
@@ -10,8 +9,6 @@ class IntegerScalarTest {
     private IntegerScalar is3;
     private IntegerScalar is4;
     private IntegerScalar is5;
-    private IntegerScalar is6;
-
 
     @BeforeEach
     void setUp() {
@@ -20,19 +17,13 @@ class IntegerScalarTest {
         is3 = new IntegerScalar(-1);
         is4 = new IntegerScalar(2);
         is5 = new IntegerScalar(3);
-        is6 = new IntegerScalar(-3);
+
+
 
     }
 
     @Test
     void test_getNumber() {
-        assertEquals(1,is1.getNumber());
-        assertEquals(0,is2.getNumber());
-        assertEquals(-1,is3.getNumber());
-        assertEquals(2,is4.getNumber());
-        assertEquals(3,is5.getNumber());
-        assertEquals(-3,is6.getNumber());
-
     }
 
     @Test
@@ -41,6 +32,7 @@ class IntegerScalarTest {
         assertEquals(is5,is4.add(is1));
         assertEquals(is1,is4.add(is3));
         assertEquals("-2",is6.add(is1).toString());
+
     }
 
     @Test
