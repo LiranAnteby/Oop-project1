@@ -29,10 +29,9 @@ class PolynomialTest {
 
     @org.junit.jupiter.api.Test
     void test_add() {
-        //assertEquals("1+3x+5x^2+3x^3",polynomial1.add(polynomial2).toString());
-        assertEquals("6+2x+3x^2",polynomial1.add(polynomial4).toString());
+        assertEquals("1+3x+5x^2+3x^3",polynomial1.add(polynomial2).toString());
         //assertEquals("5+1/2x+3x^2-5/3x^3",polynomial4.add(polynomial6).toString());
-        //assertEquals("x-2x^2+3x^3+7x^6",polynomial5.add(polynomial3).toString());
+        assertEquals("x-2x^2+3x^3+7x^6",polynomial5.add(polynomial3).toString());
     }
 
     @org.junit.jupiter.api.Test

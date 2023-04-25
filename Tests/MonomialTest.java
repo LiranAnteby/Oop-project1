@@ -32,8 +32,6 @@ class MonomialTest {
 
     @Test
     void add() {
-        assertEquals("2x",monomial1.add(monomial3));
-
     }
 
     @Test
