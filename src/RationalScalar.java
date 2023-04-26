@@ -18,9 +18,10 @@ public class RationalScalar implements Scalar {
     public Scalar add(Scalar s) {
         return s.add(this);
     }
-
     public Scalar add(IntegerScalar s){
-        return this.add(new RationalScalar(s.getNumber(),1));
+        if(numerator == 0 ) return s;
+        if (s.getNumber() == 0 )return this;
+        return new RationalScalar((s.getNumber()*denominator + numerator),denominator).reduce();
     }
     public Scalar add(RationalScalar s){
         int tempN = numerator * s.getDenominator() + s.getNumerator() * denominator;

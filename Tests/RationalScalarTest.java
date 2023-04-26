@@ -42,7 +42,7 @@ class RationalScalarTest {
         assertEquals(rs6,rs3.add(rs4));
         assertEquals(rs1,rs1.add(rs2));
         assertEquals(rs7,rs1.add(rs5));
-
+        assertEquals(is1,rs2.add(is1));
     }
 
     @Test

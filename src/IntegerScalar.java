@@ -16,7 +16,7 @@ public class IntegerScalar implements Scalar{
         return new IntegerScalar(number + s.getNumber());
     }
     public Scalar add(RationalScalar s){
-        return s.add(new RationalScalar(number,1));
+        return new RationalScalar((s.getDenominator() * number) + s.getNumerator(),s.getDenominator()).reduce();
     }
     public Scalar mul(Scalar s){
         return s.mul(this);
