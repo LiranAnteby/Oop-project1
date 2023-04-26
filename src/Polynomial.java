@@ -15,6 +15,7 @@ public class Polynomial {
             }
         }
     }
+
     static Polynomial build(String input) {
         LinkedList<Monomial> list = new LinkedList<>();
         int exponent = 0;
@@ -33,45 +34,23 @@ public class Polynomial {
         }
         return new Polynomial(list);
     }
-/*
+
     public Polynomial add(Polynomial p) {
-        LinkedList<Monomial> list = new LinkedList<>() ;
+        LinkedList<Monomial> list = new LinkedList<>();
         list.addAll(this.monomials.values());
         list.addAll(p.monomials.values());
         return new Polynomial(list);
+    }
 
-    public Polynomial add(Polynomial p) {
-        LinkedList<Monomial> list = new LinkedList<>() ;
-        int lastCurrent = monomials.lastKey();
-        int lastOther = p.monomials.lastKey();
-        if (lastCurrent>=lastOther){int last = lastOther;}
-        else{int last = lastCurrent;}
-        for(int i = 0 ; i<=last ; i++) {
-            Monomial tempP = new Monomial(i, p.monomials.get(i).getCoefficient());
-            list.add(this.monomials.get(i).add(tempP));
+    public Polynomial mul(Polynomial p) {
+        LinkedList<Monomial> list = new LinkedList<>();
+        for (Monomial m1 : this.monomials.values()) {
+            for (Monomial m2 : p.monomials.values()) {
+                Monomial multiplied = m1.mul(m2);
+                list.add(multiplied);
+            }
         }
         return new Polynomial(list);
-    }
-
-
-
- */
-
-    public Polynomial add(Polynomial p) {
-        Polynomial poly = this;
-        Set<Integer> pSet = p.monomials.keySet();
-        for ( Integer key : pSet){
-            poly.monomials.put(key,poly.monomials.get(key).add(p.monomials.get(key)));
-        }
-        return poly;
-    }
-    public Polynomial mul(Polynomial p){
-        Polynomial poly = this;
-        Set<Integer> pSet = p.monomials.keySet();
-        for ( Integer key : pSet){
-            poly.monomials.put(key,poly.monomials.get(key).mul(p.monomials.get(key)));
-        }
-        return poly;
     }
 
     public Scalar evaluate(Scalar s){
@@ -79,7 +58,7 @@ public class Polynomial {
         Set<Integer> KeySet = this.monomials.keySet();
         for ( Integer key : KeySet){
             Scalar temp = this.monomials.get(key).evaluate(s);
-            scalar = temp;
+            scalar = scalar.add(temp);
         }
         return scalar;
     }
@@ -107,20 +86,18 @@ public class Polynomial {
         return true;
     }
 
-public String toString(){
-    String string = "";
-    Set<Integer> keySet = this.monomials.keySet();
-    for ( Integer key : keySet){;
-        Monomial value = monomials.get(key);
-        //System.out.println(value.toString());
-        if (value.toString() != ""){
+    public String toString(){
+     String string = "";
+     Set<Integer> keySet = this.monomials.keySet();
+     for ( Integer key : keySet){;
+          Monomial value = monomials.get(key);
+          if (value.toString() != ""){
             if(value.toString().charAt(0) == '-'){
                 string = string + value.toString();
             }
             else{
                 if (string != ""){
                     string =    string + "+"+value.toString() ;
-
                 }
                 else{
                     string = string + value.toString();

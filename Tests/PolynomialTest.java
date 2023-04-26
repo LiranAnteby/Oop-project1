@@ -24,20 +24,20 @@ class PolynomialTest {
         assertEquals("7x^6",polynomial3.toString());
         assertEquals("5",polynomial4.toString());
         assertEquals("1-2x+3x^2",polynomial5.toString());
-        //assertEquals("1/2x+3x^2-5/3x^3",polynomial6.toString());
+        assertEquals("1/2x+3x^2-5/3x^3",polynomial6.toString());
     }
 
     @org.junit.jupiter.api.Test
     void test_add() {
         assertEquals("1+3x+5x^2+3x^3",polynomial1.add(polynomial2).toString());
-        //assertEquals("5+1/2x+3x^2-5/3x^3",polynomial4.add(polynomial6).toString());
-        assertEquals("x-2x^2+3x^3+7x^6",polynomial5.add(polynomial3).toString());
+        assertEquals("5+1/2x+3x^2-5/3x^3",polynomial4.add(polynomial6).toString());
+        assertEquals("1-2x+3x^2+7x^6",polynomial5.add(polynomial3).toString());
     }
 
     @org.junit.jupiter.api.Test
     void test_mul() {
-        assertEquals("2x+6x^2+3x^3",polynomial1.mul(polynomial2).toString());
-        assertEquals("5-2x+3x^2",polynomial4.mul(polynomial5).toString());
+        assertEquals("5+10x+15x^2",polynomial1.mul(polynomial4).toString());
+        assertEquals("7x^6-14x^7+21x^8",polynomial3.mul(polynomial5).toString());
     }
 
     @org.junit.jupiter.api.Test
@@ -47,7 +47,8 @@ class PolynomialTest {
         assertEquals("7",polynomial3.evaluate(new IntegerScalar(1)).toString());
         assertEquals("5",polynomial4.evaluate(new IntegerScalar(60)).toString());
         assertEquals("-1/3",polynomial6.evaluate(new IntegerScalar(2)).toString());
-        assertEquals("2",polynomial6.evaluate(new RationalScalar(1, 3)).toString());
+        assertEquals("-249",polynomial6.evaluate(new IntegerScalar(6)).toString());
+        assertEquals("7/729",polynomial3.evaluate(new RationalScalar(1, 3)).toString());
     }
 
     @org.junit.jupiter.api.Test
@@ -56,7 +57,7 @@ class PolynomialTest {
         assertEquals("1+4x+9x^2",polynomial2.derivative().toString());
         assertEquals("42x^5",polynomial3.derivative().toString());
         assertEquals("",polynomial4.derivative().toString());
-        assertEquals("-2+6x",polynomial6.derivative().toString());
+        assertEquals("-2+6x",polynomial5.derivative().toString());
         assertEquals("1/2+6x-5x^2",polynomial6.derivative().toString());
     }
 
@@ -74,6 +75,6 @@ class PolynomialTest {
         assertEquals("7x^6",polynomial3.toString());
         assertEquals("5",polynomial4.toString());
         assertEquals("1-2x+3x^2",polynomial5.toString());
-        //assertEquals("1/2x+3x^2-5/3x^3",polynomial6.toString());
+        assertEquals("1/2x+3x^2-5/3x^3",polynomial6.toString());
     }
 }
